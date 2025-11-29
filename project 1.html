@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Nadiah Nur Halimah</title>
+  <style>
+    /* Reset & Base */
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #faf5ff; /* soft lavender */
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+    h2 {color: #6a1b9a; margin-bottom: 20px; text-align: center;}
+
+    /* Navbar */
+    nav {
+      display: flex; justify-content: center; gap: 20px;
+      background: #7e57c2; padding: 15px; position: sticky; top: 0; z-index: 1000;
+      transition: background 0.3s;
+    }
+    nav a {
+      color: white; text-decoration: none; font-weight: 500;
+      transition: 0.3s; padding-bottom: 2px;
+    }
+    nav a:hover, nav a.active {color: #ffe082; border-bottom: 2px solid #ffe082;}
+
+    /* Dark Mode Navbar */
+    body.dark nav {background: #4527a0;}
+    body.dark h2 {color: #9575cd;}
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #ce93d8, #90caf9);
+      color: white; text-align: center; padding: 80px 20px;
+      transition: background 0.3s;
+    }
+    .hero img {
+      width: 160px; height: 160px; border-radius: 50%; border: 5px solid white;
+      margin-bottom: 15px;
+    }
+    .hero h1 {font-size: 2.5rem; margin-bottom: 10px;}
+    .hero p {font-size: 1.1rem; opacity: 0.9;}
+    .btn {
+      display: inline-block; margin-top: 15px; padding: 10px 20px;
+      background: #ffe082; color: #4a148c; font-weight: bold;
+      border-radius: 25px; text-decoration: none; transition: 0.3s;
+    }
+    .btn:hover {background: white; color: #4a148c;}
+
+    /* Section */
+    section {max-width: 1000px; margin: auto; padding: 60px 20px;}
+
+    /* Skills */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: white; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left; transition: background 0.3s, color 0.3s;
+    }
+    .skill-card h3 {margin-bottom: 10px; color: #6a1b9a;}
+    progress {width: 100%; height: 18px; border-radius: 10px;}
+
+    /* Portfolio */
+.portfolio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+  text-align: left;
+}
+
+.card-body h3 {
+  margin-bottom: 10px;
+  color: #ad1457;
+}
+
+.card-body p {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.card-body .btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #ad1457;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.card-body .btn:hover {
+  background: #7b1fa2;
+}
+
+
+    /* Contact */
+    form {
+      display: grid; gap: 15px; max-width: 500px; margin: auto;
+    }
+    input, textarea {
+      padding: 10px; border: 1px solid #ccc; border-radius: 8px;
+      font-size: 1rem; width: 100%;
+    }
+    button {
+      background: #7e57c2; color: white; border: none;
+      padding: 12px; border-radius: 25px; cursor: pointer;
+      font-weight: bold; transition: 0.3s;
+    }
+    button:hover {background: #ce93d8; color: #333;}
+
+    /* Footer */
+    footer {
+      background: #7e57c2; color: white; text-align: center;
+      padding: 20px; margin-top: 40px;
+      transition: background 0.3s;
+    }
+    .socials a {
+      margin: 0 10px; color: white; font-size: 1.3rem; text-decoration: none;
+      transition: 0.3s;
+    }
+    .socials a:hover {color: #ffe082;}
+
+    /* Dark Mode */
+    body.dark {background: #121212; color: #eee;}
+    body.dark .hero {background: linear-gradient(135deg, #311b92, #1e88e5);}
+    body.dark .skill-card {background: #1e1e1e; color: #ddd;}
+    body.dark .card {background: #1e1e1e; color: #ddd;}
+    body.dark footer {background: #311b92;}
+    
+    /* Animasi Scroll */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.show {opacity: 1; transform: translateY(0);}
+
+    /* Toggle Button */
+    #toggle-dark {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #7e57c2; color: white; border: none;
+      padding: 12px 18px; border-radius: 25px; cursor: pointer;
+      font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    #toggle-dark:hover {background: #ce93d8;}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#skills">Skills</a>
+    <a href="#portofolio">Portofolio</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero fade-in" id="hero">
+    <img src="foto.jpeg" alt="Foto Profil">
+    <h1>Halo, Saya Nadiah Nur Halimah</h1>
+    <p>Mahasiswa Informatika | Web & Software Enthusiast</p>
+    <a href="#portofolio" class="btn">Lihat Portofolio</a>
+    <a href="CV_Nadiah.pdf" class="btn" download>Download CV</a>
+  </section>
+
+  <!-- Tentang -->
+  <section id="tentang" class="fade-in">
+    <h2>Tentang Saya</h2>
+    <p style="max-width:700px; margin:auto; font-size:1.1rem; line-height:1.6; text-align:center;">
+      Saya Nadiah Nur Halimah, mahasiswa Informatika dengan minat di bidang 
+      <b>Web Development</b> dan <b>Software Engineering</b>. 
+      Saya suka membangun aplikasi modern yang bermanfaat dan mudah digunakan,
+      serta terus belajar teknologi baru untuk meningkatkan skill.
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="fade-in">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>HTML & CSS</h3>
+        <progress value="85" max="100"></progress>
+      </div>
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+        <progress value="70" max="100"></progress>
+      </div>
+      <div class="skill-card">
+        <h3>PHP / Laravel</h3>
+        <progress value="65" max="100"></progress>
+      </div>
+      <div class="skill-card">
+        <h3>Python</h3>
+        <progress value="68" max="100"></progress>
+      </div>
+      <div class="skill-card">
+        <h3>MySQL</h3>
+        <progress value="75" max="100"></progress>
+      </div>
+      <div class="skill-card">
+        <h3>React</h3>
+        <progress value="60" max="100"></progress>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portofolio -->
+<section id="portofolio" class="fade-in">
+  <h2>Portofolio</h2>
+  <div class="portfolio-list">
+    
+    <!-- Project 1 -->
+    <div class="card">
+      <img src="project1.png" alt="Landing Page">
+      <div class="card-body">
+        <h3>Landing Page</h3>
+        <p>Website portofolio pribadi dengan desain modern, animasi typing, dan navigasi responsif.</p>
+        <a href="project1/index.html" target="_blank" class="btn">🔗 Lihat Project</a>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="card">
+      <img src="project2.png" alt="To-Do List App">
+      <div class="card-body">
+        <h3>Aplikasi To-Do</h3>
+        <p>Aplikasi manajemen tugas dengan kategori, deadline, dark mode, dan LocalStorage.</p>
+        <a href="project2/index.html" target="_blank" class="btn">🔗 Lihat Project</a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card">
+      <img src="project3.png" alt="Scientific Calculator">
+      <div class="card-body">
+        <h3>Scientific Calculator</h3>
+        <p>Kalkulator modern dengan fungsi scientific (sin, cos, log), dark mode, dan riwayat.</p>
+        <a href="project3/index.html" target="_blank" class="btn">🔗 Lihat Project</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Kontak -->
+  <section id="kontak" class="fade-in">
+    <h2>Kontak</h2>
+    <form>
+      <input type="text" placeholder="Nama" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Pesan..." required></textarea>
+      <button type="submit">Kirim Pesan</button>
+    </form>
+    <div class="socials" style="margin-top:20px;">
+      <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
+      <a href="https://github.com/username" target="_blank">GitHub</a>
+      <a href="https://instagram.com/username" target="_blank">Instagram</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Nadiah. Dibuat dengan 💖</p>
+  </footer>
+
+  <!-- Dark Mode Toggle -->
+  <button id="toggle-dark">🌙 Mode Gelap</button>
+
+  <script>
+    // Highlight navbar aktif saat scroll
+    const navLinks = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("section");
+
+    function setActiveLink() {
+      let index = sections.length;
+      while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+      navLinks.forEach(link => link.classList.remove("active"));
+      navLinks[index].classList.add("active");
+    }
+    window.addEventListener("scroll", setActiveLink);
+    window.addEventListener("load", setActiveLink);
+
+    // Alert untuk form (dummy)
+    const form = document.querySelector("form");
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Pesan berhasil dikirim! (Simulasi)");
+      form.reset();
+    });
+
+    // Animasi scroll
+    const faders = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    faders.forEach(fader => observer.observe(fader));
+
+    // Dark Mode Toggle
+    const toggleBtn = document.getElementById("toggle-dark");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggleBtn.textContent = document.body.classList.contains("dark")
+        ? "☀️ Mode Terang"
+        : "🌙 Mode Gelap";
+    });
+  </script>
+</body>
+</html>
